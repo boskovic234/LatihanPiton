@@ -5,5 +5,10 @@ nilaimedian = stat.median([2,3,4,5,6,7,8,9,5,4])
 
 print(nilaimean)
 print(nilaimedian)
+print(nilaimedian)
+print(nilaimedian)
+print(nilaimedian)
+print(nilaimedian)
+print(nilaimedian)
 
-#COBA CEK asjhdajkshdjkashdjkashdjkashkj
+#COBA CEK asjhdajkshdjkashdjkashdjkashkjvfgddfasdasdsadd
