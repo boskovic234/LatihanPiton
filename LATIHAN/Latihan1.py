@@ -23,24 +23,59 @@ import string
 
 #print(a+b+c)
 
-#coba
 
-uang = int(input("Masukkan uang anda :"))
-#uang = int(uang)
+#LATIHAN 1
 
-hargabuku = int(input("Masukkan harga buku:"))
-#hargabuku = int(hargabuku)
+# uang = int(input("Masukkan uang anda :"))
+# #uang = int(uang)
 
-totalbeli = int(input("Mau beli berapa :"))
-#totalbeli = int(totalbeli)
+# hargabuku = int(input("Masukkan harga buku:"))
+# #hargabuku = int(hargabuku)
 
-totalbelanja = hargabuku * totalbeli
+# totalbeli = int(input("Mau beli berapa :"))
+# #totalbeli = int(totalbeli)
 
-if uang < totalbelanja:
-    print ("Uang Anda Kurang")
+# totalbelanja = hargabuku * totalbeli
 
-if uang >= totalbelanja:
-    print ("Berhasil Checkout")
-    uang = str(uang - totalbelanja)
-    #uang = str(uang)
-    print ("Sisa Uang Anda Adalah :" + uang)
+# if uang < totalbelanja:
+#     print ("Uang Anda Kurang")
+
+# if uang >= totalbelanja:
+#     print ("Berhasil Checkout")
+#     uang = str(uang - totalbelanja)
+#     #uang = str(uang)
+#     print ("Sisa Uang Anda Adalah :" + uang)
+
+
+#LATIHAN 2
+nilaiabsen = int(input("Masukkan Nilai Absen :"))
+nilaitugas = int(input("Masukkan Nilai Tugas :"))
+nilaiuts = int(input("Masukkan Nilai UTS :"))
+nilaiuas = int(input("Masukkan Nilai UAS :"))
+
+nilaiabsen = nilaiabsen * 0.1
+nilaitugas = nilaitugas * 0.2
+nilaiuts = nilaiuts * 0.3
+nilaiuas = nilaiuas * 0.4
+
+nilaiakhir = nilaiabsen + nilaitugas + nilaiuts + nilaiuas
+
+if (nilaiakhir > 80) and (nilaiakhir <= 100):
+    print(nilaiakhir)
+    print("Grade Anda A")
+
+elif (nilaiakhir > 70) and (nilaiakhir <= 80):
+    print(nilaiakhir)
+    print("Grade Anda B")
+
+elif (nilaiakhir > 60) and (nilaiakhir <= 70):
+    print(nilaiakhir)
+    print("Grade Anda C")
+
+elif (nilaiakhir > 50) and (nilaiakhir <= 60):
+    print(nilaiakhir)
+    print("Grade Anda D")
+
+elif (nilaiakhir < 50 ):
+    print(nilaiakhir)
+    print("Grade Anda E")
