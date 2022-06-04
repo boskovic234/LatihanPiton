@@ -19,6 +19,6 @@ a = ('aab')
 b = ('cungu')
 c = 1
 
-string(c)
+c = str(c)
 
 print(a+b+c)
