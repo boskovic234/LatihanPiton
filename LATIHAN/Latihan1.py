@@ -15,12 +15,32 @@ import string
 
 #print(luas)
 
-a = ('aab')
-b = ('cungu')
-c = 1
+#a = ('aab')
+#b = ('cungu')
+#c = 1
 
-c = str(c)
+#c = str(c)
 
-print(a+b+c)
+#print(a+b+c)
 
 #coba
+
+uang = int(input("Masukkan uang anda :"))
+#uang = int(uang)
+
+hargabuku = int(input("Masukkan harga buku:"))
+#hargabuku = int(hargabuku)
+
+totalbeli = int(input("Mau beli berapa :"))
+#totalbeli = int(totalbeli)
+
+totalbelanja = hargabuku * totalbeli
+
+if uang < totalbelanja:
+    print ("Uang Anda Kurang")
+
+if uang >= totalbelanja:
+    print ("Berhasil Checkout")
+    uang = str(uang - totalbelanja)
+    #uang = str(uang)
+    print ("Sisa Uang Anda Adalah :" + uang)
