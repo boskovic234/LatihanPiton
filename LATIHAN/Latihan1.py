@@ -79,3 +79,5 @@ elif (nilaiakhir > 50) and (nilaiakhir <= 60):
 elif (nilaiakhir < 50 ):
     print(nilaiakhir)
     print("Grade Anda E")
+
+
