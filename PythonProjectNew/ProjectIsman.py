@@ -1,6 +1,7 @@
 #%%
 from sre_parse import CATEGORIES
 from turtle import clear
+import matplotlib
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -140,33 +141,93 @@ dfpol = pd.read_csv(r'C:\Users\bosko\Documents\ULERPITON3\LatihanPiton\PythonPro
 
 
 # # COVID19
-c19year = int(input('Masukkan tahun [2020 - 2022] : '))
-c19 = dfpol[(dfpol['Rank']!='K9') & (dfpol['Cause_of_Death']=='COVID19') & (dfpol['Year']==c19year)]
-trendc19 = c19.groupby('Month')['Name'].count().reset_index()
-trendc19.rename(columns={'Name':'Kasus Covid'}, inplace=True)
+# c19year = int(input('Masukkan tahun [2020 - 2022] : '))
+# c19 = dfpol[(dfpol['Rank']!='K9') & (dfpol['Cause_of_Death']=='COVID19') & (dfpol['Year']==c19year)]
+# trendc19 = c19.groupby('Month')['Name'].count().reset_index()
+# trendc19.rename(columns={'Name':'Kasus Covid'}, inplace=True)
 
-sort_order = ['January','February','March',
-                'April','May','June',
-                'July','August','September',
-                'October','November','December']
+# sort_order = ['January','February','March',
+#                 'April','May','June',
+#                 'July','August','September',
+#                 'October','November','December']
 
-trendc19.index = pd.CategoricalIndex(trendc19['Month'],categories=sort_order,ordered=True)
-trendc19 = trendc19.sort_index().reset_index(drop=True)
+# trendc19.index = pd.CategoricalIndex(trendc19['Month'],categories=sort_order,ordered=True)
+# trendc19 = trendc19.sort_index().reset_index(drop=True)
 
-# plt.locator_params('x', nbins=18)
-# plt.locator_params('y', nbins=12)
+# # plt.locator_params('x', nbins=18)
+# # plt.locator_params('y', nbins=12)
 
-trendc19.plot(x='Month',y='Kasus Covid',kind='bar',figsize=(15,6),color='red')
-trendc19.plot(x='Month',y='Kasus Covid',kind='line',figsize=(15,6),color='blue',marker='*',secondary=True)
-trendmonthmeanc19 = round(statistics.mean(trendc19['Kasus Covid']))
+# trendc19.plot(x='Month',y='Kasus Covid',kind='bar',figsize=(15,6),color='red')
 
-plt.ylabel('Kematian (Kasus)')
-plt.xlabel('Bulan')
-plt.title('Trend kasus COVID di Amerika tahun '+str(c19year)+' (Rata-rata : '+str(trendmonthmeanc19)+' kasus)')
+# topvaltrend = trendc19['Kasus Covid']
+# for index, value in enumerate(topvaltrend):
+#     plt.text(value, index, str(value))
 
-plt.show()
+# # trendc19.plot(x='Month',y='Kasus Covid',kind='line',figsize=(15,6),color='blue',marker='*',secondary=True)
+# trendmonthmeanc19 = round(statistics.mean(trendc19['Kasus Covid']))
+
+# plt.ylabel('Kematian (Kasus)')
+# plt.xlabel('Bulan')
+# plt.title('Trend kasus COVID di Amerika tahun '+str(c19year)+' (Rata-rata : '+str(trendmonthmeanc19)+' kasus)')
+
+# plt.show()
 
 #%%
+
+# #ADJUST TOTAL
+# trend = dfpol[(dfpol['Rank']!='K9')]
+# trendc = trend.groupby('Year')['Name'].count()
+# matplotlib.pyplot.rcdefaults()
+# plt.locator_params('x', nbins=18)
+# plt.locator_params('y', nbins=12)
+# trendc.plot(kind='line',figsize=(15,6),color='red')
+
+# plt.ylabel('Kematian (Kasus)')
+# plt.xlabel('Tahun')
+
+# # Cari tahun dengan kasus terbanyak
+# S2 = trendc.reset_index('Year')
+# S2total = S2.Name.max()
+# npmaxtahun = np.array(S2[(S2['Name']==S2total)])
+# maxtahun = str(npmaxtahun[0,0])
+# maxtahuncase = str(npmaxtahun[0,1])
+
+
+# # Rata2 Kasus per tahun
+# rata2kasus = round(statistics.mean(trendc))
+# plt.text(1973, 610, 'Kasus Tertinggi: '+maxtahun+' ('+maxtahuncase+')'+' ->')
+# plt.text(1800, 500, 'Rata-rata : '+ str(rata2kasus)+' kasus')
+# plt.title('Trend kematian polisi Amerika tahun 1791 - 2022')
+
+# plt.annotate('',                      
+#         xy=(2017, 500),             
+#         xytext=(2013, 280),         
+#         xycoords='data',         
+#         arrowprops=dict(arrowstyle='->', connectionstyle='arc3', color='blue', lw=2)
+#     )
+
+# plt.annotate('2019 - PANDEMI COVID19', 
+#         xy=(2008, 270),                    
+#         rotation=82.5,                  
+#         va='bottom',                    
+#         ha='left',                      
+#     )
+
+# plt.show()
+
+# trendcsns = pd.DataFrame(trendc)
+# trendcsns.index = map(float,trendcsns.index)
+# trendcsns.reset_index(inplace=True)
+# trendcsns.columns = ['Tahun','Total Kasus']
+# plt.figure(figsize=(15,6))
+# sns.set(font_scale=1.0)
+# sns.set_style('whitegrid')
+# ax = sns.regplot(x='Tahun', y='Total Kasus', data=trendcsns,color='green',marker='+')
+
+# plt.title('Reggression View')
+
+# plt.show()
+
 
 
 # START PRORGAM
@@ -193,10 +254,11 @@ while True:
     if pilihan.lower() == "1":
         trend = dfpol[(dfpol['Rank']!='K9')]
         trendc = trend.groupby('Year')['Name'].count()
+        matplotlib.pyplot.rcdefaults()
         plt.locator_params('x', nbins=18)
         plt.locator_params('y', nbins=12)
         trendc.plot(kind='line',figsize=(15,6),color='red')
-        
+
         plt.ylabel('Kematian (Kasus)')
         plt.xlabel('Tahun')
 
@@ -213,21 +275,34 @@ while True:
         plt.text(1973, 610, 'Kasus Tertinggi: '+maxtahun+' ('+maxtahuncase+')'+' ->')
         plt.text(1800, 500, 'Rata-rata : '+ str(rata2kasus)+' kasus')
         plt.title('Trend kematian polisi Amerika tahun 1791 - 2022')
-        
+
         plt.annotate('',                      
-             xy=(2017, 500),             
-             xytext=(2013, 280),         
-             xycoords='data',         
-             arrowprops=dict(arrowstyle='->', connectionstyle='arc3', color='blue', lw=2)
+                xy=(2017, 500),             
+                xytext=(2013, 280),         
+                xycoords='data',         
+                arrowprops=dict(arrowstyle='->', connectionstyle='arc3', color='blue', lw=2)
             )
-        
+
         plt.annotate('2019 - PANDEMI COVID19', 
-             xy=(2008, 270),                    
-             rotation=82.5,                  
-             va='bottom',                    
-             ha='left',                      
+                xy=(2008, 270),                    
+                rotation=82.5,                  
+                va='bottom',                    
+                ha='left',                      
             )
-        
+
+        plt.show()
+
+        trendcsns = pd.DataFrame(trendc)
+        trendcsns.index = map(float,trendcsns.index)
+        trendcsns.reset_index(inplace=True)
+        trendcsns.columns = ['Tahun','Total Kasus']
+        plt.figure(figsize=(15,6))
+        sns.set(font_scale=1.0)
+        sns.set_style('whitegrid')
+        ax = sns.regplot(x='Tahun', y='Total Kasus', data=trendcsns,color='green',marker='+')
+
+        plt.title('Reggression View')
+
         plt.show()
         
         
@@ -353,7 +428,7 @@ while True:
             break
 
     if pilihan.lower() == "5":
-        
+        # matplotlib.pyplot.rcdefaults()
         # COVID19
         c19year = int(input('Masukkan tahun [2020 - 2022] : '))
         c19 = dfpol[(dfpol['Rank']!='K9') & (dfpol['Cause_of_Death']=='COVID19') & (dfpol['Year']==c19year)]
@@ -371,7 +446,7 @@ while True:
         # plt.locator_params('x', nbins=18)
         # plt.locator_params('y', nbins=12)
         trendc19.plot(x='Month',y='Kasus Covid',kind='bar',figsize=(15,6),color='red')
-        trendc19.plot(x='Month',y='Kasus Covid',kind='line',figsize=(15,6),color='blue',marker='*')
+        # trendc19.plot(x='Month',y='Kasus Covid',kind='line',figsize=(15,6),color='blue',marker='*')
         trendmonthmeanc19 = round(statistics.mean(trendc19['Kasus Covid']))
 
         plt.ylabel('Kematian (Kasus)')
