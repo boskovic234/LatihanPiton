@@ -140,11 +140,22 @@ dfpol = pd.read_csv(r'C:\Users\bosko\Documents\ULERPITON3\LatihanPiton\PythonPro
 # plt.show()
 
 
-# # COVID19
+# # # COVID19
 # c19year = int(input('Masukkan tahun [2020 - 2022] : '))
 # c19 = dfpol[(dfpol['Rank']!='K9') & (dfpol['Cause_of_Death']=='COVID19') & (dfpol['Year']==c19year)]
 # trendc19 = c19.groupby('Month')['Name'].count().reset_index()
 # trendc19.rename(columns={'Name':'Kasus Covid'}, inplace=True)
+
+# # UNTUK CARI BULAN TERBANYAK KASUS DI TAHUN TERSEBUT
+# maxmc19 = trendc19['Kasus Covid'].max()
+# npmaxmc19 = np.array(trendc19[(trendc19['Kasus Covid']==maxmc19)])
+# maxmonthmc19 = str(npmaxmc19[0,0])
+
+# # UNTUK CARI KOTA TERBANYAK KASUS DI TAHUN TERSEBUT
+# cityc19 = c19.groupby('State')['Name'].count().reset_index()
+# maxcityc19 = cityc19['Name'].max()
+# npmaxcityc19 = np.array(cityc19[(cityc19['Name']==maxcityc19)])
+# maxstatec19 = str(npmaxcityc19[0,0])
 
 # sort_order = ['January','February','March',
 #                 'April','May','June',
@@ -156,19 +167,16 @@ dfpol = pd.read_csv(r'C:\Users\bosko\Documents\ULERPITON3\LatihanPiton\PythonPro
 
 # # plt.locator_params('x', nbins=18)
 # # plt.locator_params('y', nbins=12)
-
 # trendc19.plot(x='Month',y='Kasus Covid',kind='bar',figsize=(15,6),color='red')
-
-# topvaltrend = trendc19['Kasus Covid']
-# for index, value in enumerate(topvaltrend):
-#     plt.text(value, index, str(value))
-
-# # trendc19.plot(x='Month',y='Kasus Covid',kind='line',figsize=(15,6),color='blue',marker='*',secondary=True)
+# # trendc19.plot(x='Month',y='Kasus Covid',kind='line',figsize=(15,6),color='blue',marker='*')
 # trendmonthmeanc19 = round(statistics.mean(trendc19['Kasus Covid']))
 
 # plt.ylabel('Kematian (Kasus)')
 # plt.xlabel('Bulan')
 # plt.title('Trend kasus COVID di Amerika tahun '+str(c19year)+' (Rata-rata : '+str(trendmonthmeanc19)+' kasus)')
+
+# print('Pada tahun '+str(c19year)+', kasus COVID19 paling banyak terjadi di bulan '+maxmonthmc19+', dengan kota '+maxstatec19+
+# ' menduduki peringkat terbanyak polisi terinfeksi COVID19 di tahun ini.')
 
 # plt.show()
 
@@ -231,7 +239,7 @@ dfpol = pd.read_csv(r'C:\Users\bosko\Documents\ULERPITON3\LatihanPiton\PythonPro
 
 
 # START PRORGAM
-
+print('👮‍♂️ ⚠️  👮‍♀️')
 namaanda = input("Masukkan nama anda : ")
 
 # control = {1:'ya',2:'tidak'}
@@ -239,6 +247,7 @@ namaanda = input("Masukkan nama anda : ")
 while True:
     
     os.system('cls')
+    print('👮‍♂️ ⚠️  👮‍♀️')
     print(" ")
     print("Selamat datang di pusat informasi Kepolisian Amerika Serikat, "+namaanda.title())
     print(" ")
@@ -435,6 +444,17 @@ while True:
         trendc19 = c19.groupby('Month')['Name'].count().reset_index()
         trendc19.rename(columns={'Name':'Kasus Covid'}, inplace=True)
 
+        # UNTUK CARI BULAN TERBANYAK KASUS DI TAHUN TERSEBUT
+        maxmc19 = trendc19['Kasus Covid'].max()
+        npmaxmc19 = np.array(trendc19[(trendc19['Kasus Covid']==maxmc19)])
+        maxmonthmc19 = str(npmaxmc19[0,0])
+
+        # UNTUK CARI KOTA TERBANYAK KASUS DI TAHUN TERSEBUT
+        cityc19 = c19.groupby('State')['Name'].count().reset_index()
+        maxcityc19 = cityc19['Name'].max()
+        npmaxcityc19 = np.array(cityc19[(cityc19['Name']==maxcityc19)])
+        maxstatec19 = str(npmaxcityc19[0,0])
+
         sort_order = ['January','February','March',
                         'April','May','June',
                         'July','August','September',
@@ -452,6 +472,9 @@ while True:
         plt.ylabel('Kematian (Kasus)')
         plt.xlabel('Bulan')
         plt.title('Trend kasus COVID di Amerika tahun '+str(c19year)+' (Rata-rata : '+str(trendmonthmeanc19)+' kasus)')
+
+        print('Pada tahun '+str(c19year)+', kasus COVID19 paling banyak terjadi di bulan '+maxmonthmc19+', dengan kota '+maxstatec19+
+        ' menduduki peringkat terbanyak polisi terinfeksi COVID19 di tahun ini.')
 
         plt.show()
         
