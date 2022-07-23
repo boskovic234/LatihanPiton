@@ -314,7 +314,7 @@ while True:
 
         plt.show()
         
-        
+        print('')
         ulang = input("Apakah anda ingin kembali ke menu utama ? (Ya/Tidak) : ")
         if ulang.lower() == "tidak":
             break
@@ -392,7 +392,7 @@ while True:
         
         print('')
         print('Kematian polisi pada tahun '+str(tahun)+' di dominasi oleh kasus '+maxcase+
-              ', rank yang paling banyak mengalami kematian pada tahun ini adalah '+maxrank+', selain itu kota '+state+
+              ', pangkat yang paling banyak mengalami kematian pada tahun ini adalah '+maxrank+', selain itu kota '+state+
               ' menyumbang kasus terbanyak pada tahun ini, dan juga yang berasal dari department '+deptname+'.')
         
         plt.title('Kematian polisi di America pada tahun '+str(tahun))
@@ -413,6 +413,7 @@ while True:
         plt.title('Penyebab Kematian Polisi Amerika Serikat [1791 - 2022]')
         plt.show()
         
+        print('')
         ulang = input("Apakah anda ingin kembali ke menu utama ? (Ya/Tidak) : ")
         if ulang.lower() == "tidak":
             break
@@ -432,6 +433,7 @@ while True:
         plt.axis('off')
         plt.show()
         
+        print('')
         ulang = input("Apakah anda ingin kembali ke menu utama ? (Ya/Tidak) : ")
         if ulang.lower() == "tidak":
             break
@@ -448,6 +450,7 @@ while True:
         maxmc19 = trendc19['Kasus Covid'].max()
         npmaxmc19 = np.array(trendc19[(trendc19['Kasus Covid']==maxmc19)])
         maxmonthmc19 = str(npmaxmc19[0,0])
+        maxmonthmc19val = str(npmaxmc19[0,1])
 
         # UNTUK CARI KOTA TERBANYAK KASUS DI TAHUN TERSEBUT
         cityc19 = c19.groupby('State')['Name'].count().reset_index()
@@ -473,11 +476,12 @@ while True:
         plt.xlabel('Bulan')
         plt.title('Trend kasus COVID di Amerika tahun '+str(c19year)+' (Rata-rata : '+str(trendmonthmeanc19)+' kasus)')
 
-        print('Pada tahun '+str(c19year)+', kasus COVID19 paling banyak terjadi di bulan '+maxmonthmc19+', dengan kota '+maxstatec19+
+        print('Pada tahun '+str(c19year)+', kasus COVID19 paling banyak terjadi di bulan '+maxmonthmc19+' sebanyak '+maxmonthmc19val+' kasus, dengan kota '+maxstatec19+
         ' menduduki peringkat terbanyak polisi terinfeksi COVID19 di tahun ini.')
 
         plt.show()
         
+        print('')
         ulang = input("Apakah anda ingin kembali ke menu utama ? (Ya/Tidak) : ")
         if ulang.lower() == "tidak":
             break
